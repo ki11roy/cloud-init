@@ -988,6 +988,15 @@ def get_interfaces_by_mac_on_linux() -> dict:
                     driver,
                 )
                 continue
+            elif mac == "ee:ee:ee:ee:ee:ee":
+                LOG.debug(
+                    "Ignoring duplicate macs from '%s' and '%s' due to "
+                    "Calico CNI fix.",
+                    name,
+                    ret[mac],
+                    driver,
+                )
+                continue
 
             msg = "duplicate mac found! both '%s' and '%s' have mac '%s'." % (
                 name,
